@@ -8,17 +8,13 @@ const visitAllNodes = function(node, callback) {
     }
   }
   callback(node);
-}
+};
 
 const flattenTreeToArray = function(node) {
   const result = [];
-  if (node.childNodes) {
-    let children = node.childNodes
-    for (let index = 0; index < children.length; index++) {
-      visitAllNodes(children[index], (node) => result.push(node))
-    }
-  }
-  result.push(node);
+  visitAllNodes(node, item => {
+    result.push(item);
+  })
   return result;
 };
 
@@ -26,3 +22,4 @@ module.exports = {
   visitAllNodes: visitAllNodes,
   flattenTreeToArray: flattenTreeToArray
 };
+
